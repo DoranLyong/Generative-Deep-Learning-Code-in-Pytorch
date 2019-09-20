@@ -31,6 +31,13 @@ class Module(nn.Module, metaclass=PrePostInitMeta):
     def __init__(self):
         pass
 
+class Lambda(Module):
+    def __init__(self, func):
+        self.func = func
+
+    def forward(self, x):
+        return self.func(x)
+
 class Flatten(Module):
     def __init__(self, bs=False):
         self.bs = bs
@@ -46,3 +53,12 @@ class View(Module):
     def forward(self, x):
         return x.view(x.shape[0], *self.shape[1:]) if self.bs else x.view(*self.shape)
 
+class TwoTupleLinear(Module):
+    def __init__(self, in_shape, out_shape):
+        self.in_shape = in_shape
+        self.out_shape = out_shape
+        self.lin1 = nn.Linear(in_shape, out_shape)
+        self.lin2 = nn.Linear(in_shape, out_shape)
+
+    def forward(self, x):
+        return self.lin1(x), self.lin2(x)
