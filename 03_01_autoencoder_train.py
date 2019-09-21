@@ -32,4 +32,4 @@ for epoch in tqdm(range(20)):
             print(loss)
 
 print(loss)
-t.save(model.state_dict(), '03_01.pth')
+t.save(model.state_dict(), 'models/state_dicts/03_01.pth')
