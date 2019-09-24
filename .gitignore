@@ -5,7 +5,7 @@ run/paint/*
 run/write/*
 run/vae/*
 
-data
+/data
 *.pth
 *.iml
 .idea
