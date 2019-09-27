@@ -19,10 +19,10 @@ model.train()
 def vae_kl_loss(mu, log_var):
     return -.5 * t.sum(1 + log_var - mu ** 2 - log_var.exp())
 
-def vae_loss(y_pred, mu, log_var, y_true, r_loss_factor=100):
+def vae_loss(y_pred, mu, log_var, y_true):
     r_loss = F.binary_cross_entropy(y_pred, y_true, reduction='sum')
     kl_loss = vae_kl_loss(mu, log_var)
-    return r_loss_factor * r_loss + kl_loss
+    return r_loss + kl_loss
 
 lr = .0005
 for epoch in tqdm(range(20)):
