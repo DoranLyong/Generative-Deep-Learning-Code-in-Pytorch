@@ -58,14 +58,6 @@ for epoch in tqdm(range(1, 301)):
         g_loss.backward()
         g_opt.step()
 
-        if i % 33 == 0:
-            print('critic acc:')
-            print(' accuracy for real imgs :', (ri_pred >= .5).sum().item() / bs)
-            print(' accuracy for gen imgs :', (gi_pred < .5).sum().item() / bs)
-
-            print('generator acc:')
-            print(' accuracy for gen trickery :', (gi_critic_pred > .5).sum().item() / bs)
-
     if epoch in imgs_at_epochs:
         imgs_at_epochs[epoch].extend(generator(t.randn(10, z_dim).to(device)))
 
