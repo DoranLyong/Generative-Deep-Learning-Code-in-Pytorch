@@ -16,7 +16,7 @@ class CelebVariationalAutoencoder(Module):
 
         for in_c_, out_c, ks, stride, pad in zip(enc_out_c[0:], enc_out_c[1:], enc_ks, enc_strides, enc_pads):
             enc_conv_layer = []
-            enc_conv_layer.append(nn.Conv2d(in_c_, out_c, ks, stride, padding=pad))
+            enc_conv_layer.append(nn.Conv2d(in_c_, out_c, ks, stride, pad))
             enc_conv_layer.extend([nn.LeakyReLU(), nn.BatchNorm2d(out_c), nn.Dropout(.25)])
             enc_conv_layers.append(nn.Sequential(*enc_conv_layer))
 
@@ -28,7 +28,7 @@ class CelebVariationalAutoencoder(Module):
                 in zip(dec_out_c[0:], dec_out_c[1:], dec_ks, dec_strides, n_layers_decoder, dec_pads, dec_op_pads):
 
             dec_conv_layer = []
-            dec_conv_layer.append(nn.ConvTranspose2d(in_c_, out_c, ks, stride, padding=pad, output_padding=op_pad))
+            dec_conv_layer.append(nn.ConvTranspose2d(in_c_, out_c, ks, stride, pad, op_pad))
             if i == len(dec_out_c) - 2:
                 dec_conv_layer.append(nn.Sigmoid())
             else:
