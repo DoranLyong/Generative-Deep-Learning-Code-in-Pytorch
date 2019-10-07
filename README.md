@@ -18,6 +18,11 @@ Part 2: Teaching Machines to Paint, Write, Compose and Play
 - [ ] Chapter 9: The Future of Generative Modeling
 - [ ] Chapter 10: Conclusion
 
+## Additional pieces I added for you
+Part 1: Introduction to Generative Deep Learning
+- .py training files for all training
+- 04_01_gan_camel_analysis.ipynb
+
 ## requirements.txt
 
 I will update the requirements.txt after I finish all the examples. For now, just run pip install or conda install on dependencies you need!
