@@ -31,7 +31,7 @@ def build_generator(gen_init_size, gen_upsample_flags, gen_c: List, gen_ks: List
     return nn.Sequential(*gen_layers)
 
 
-def build_critic(input_x_to_determine_size, critic_c: List, critic_ks: List, critic_strides, critic_pads):
+def build_critic(input_x_to_determine_size, critic_c: List, critic_ks: List, critic_strides, critic_pads, wgan=False):
     critic_layers = []
 
     for in_c, out_c, ks, stride, pad, i in \
@@ -45,7 +45,10 @@ def build_critic(input_x_to_determine_size, critic_c: List, critic_ks: List, cri
 
     critic_layers.append(Flatten(bs=True))
     critic_lin_in_shape = np.prod(nn.Sequential(*critic_layers)(input_x_to_determine_size).shape[1])
-    critic_layers.extend([norm(nn.Linear(critic_lin_in_shape, 1)), nn.Sigmoid()])
+    if wgan:
+        critic_layers.extend([norm(nn.Linear(critic_lin_in_shape, 1))])
+    else:
+        critic_layers.extend([norm(nn.Linear(critic_lin_in_shape, 1)), nn.Sigmoid()])
 
     return nn.Sequential(*critic_layers)
 

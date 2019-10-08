@@ -20,8 +20,9 @@ Part 2: Teaching Machines to Paint, Write, Compose and Play
 
 ## Additional pieces I added for you
 Part 1: Introduction to Generative Deep Learning
-- .py training files for all training
 - 04_01_gan_camel_analysis.ipynb
+- 04_02_wgan_camel_train.ipynb
+- 04_02_wgan_camel_analysis.ipynb
 
 ## requirements.txt
 
