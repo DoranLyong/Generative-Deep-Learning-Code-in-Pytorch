@@ -33,7 +33,8 @@ def build_generator(gen_init_size, gen_upsample_flags, gen_c: List, gen_ks: List
     return nn.Sequential(*gen_layers)
 
 
-def build_critic(input_x_to_determine_size, critic_c: List, critic_ks: List, critic_strides, critic_pads, wgan=False, leaky_relu=False, leaky_relu_a=.2):
+def build_critic(input_x_to_determine_size, critic_c: List, critic_ks: List, critic_strides, critic_pads,
+                 wgan=False, wgan_gp=False, leaky_relu=False, leaky_relu_a=.2):
     relu = partial(nn.LeakyReLU, leaky_relu_a) if leaky_relu else nn.ReLU
     critic_layers = []
 
@@ -42,13 +43,13 @@ def build_critic(input_x_to_determine_size, critic_c: List, critic_ks: List, cri
 
         critic_layers.append(norm(nn.Conv2d(in_c, out_c, ks, stride, pad)))
         critic_layers.append(relu())
-        if i > 0:
+        if i > 0 and not wgan_gp:
             critic_layers.append(nn.BatchNorm2d(out_c))
         critic_layers.append(nn.Dropout(.4))
 
     critic_layers.append(Flatten(bs=True))
     critic_lin_in_shape = np.prod(nn.Sequential(*critic_layers)(input_x_to_determine_size).shape[1])
-    if wgan:
+    if wgan or wgan_gp:
         critic_layers.extend([norm(nn.Linear(critic_lin_in_shape, 1))])
     else:
         critic_layers.extend([norm(nn.Linear(critic_lin_in_shape, 1)), nn.Sigmoid()])

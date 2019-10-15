@@ -23,6 +23,8 @@ Part 1: Introduction to Generative Deep Learning
 - 04_01_gan_camel_analysis.ipynb
 - 04_02_wgan_camel_train.ipynb
 - 04_02_wgan_camel_analysis.ipynb
+- 04_02_wgan_cifar_analysis.ipynb
+- 04_03_wgangp_cifar_train_and_analysis.ipynb
 
 ## requirements.txt
 
