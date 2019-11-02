@@ -7,15 +7,16 @@ from PIL import Image
 from torch.utils.data import Dataset
 
 class FaceDataset(Dataset):
-    def __init__(self, faces_path):
+    def __init__(self, faces_path, img_sizes=[128, 128], limit=None):
         items = []
         labels = []
-        for img in os.listdir(faces_path):
+        for img in os.listdir(faces_path)[:limit] if limit else os.listdir(faces_path):
             item = os.path.join(faces_path, img)
             items.append(item)
             labels.append(img)
         self.items = items
         self.labels = labels
+        self.img_sizes = img_sizes
 
     def __len__(self):
         return len(self.items)
@@ -23,7 +24,7 @@ class FaceDataset(Dataset):
     def _get_image_(self, idx):
         img = self.items[idx]
         img = PIL.Image.open(str(img)).convert('RGB')
-        img = torchvision.transforms.Resize([128, 128])(img)
+        img = torchvision.transforms.Resize(self.img_sizes)(img)
         a = np.asarray(img)
         a = np.transpose(a, (1, 0, 2))
         a = np.transpose(a, (2, 1, 0))

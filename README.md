@@ -8,7 +8,7 @@ https://www.amazon.com/Generative-Deep-Learning-Teaching-Machines/dp/1492041947/
 ## Book Contents, covered in Pytorch
 Part 1: Introduction to Generative Deep Learning
 - [x] Chapter 3: Variational Autoencoders
-- [ ] Chapter 4: Generative Adversarial Networks
+- [x] Chapter 4: Generative Adversarial Networks
 
 Part 2: Teaching Machines to Paint, Write, Compose and Play
 - [ ] Chapter 5: Paint
