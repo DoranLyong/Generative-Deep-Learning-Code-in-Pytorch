@@ -40,7 +40,7 @@ class CelebVariationalAutoencoder(Module):
         pre_flatten_shape = x.shape
         x = Flatten(bs=True)(x)
 
-        device = t.device('cuda' if t.cuda.is_available() else 'cpu')
+        device = t.device('cuda') if t.cuda.is_available() else 'cpu'
 
         def sampling(args):
             mu, log_var = args
