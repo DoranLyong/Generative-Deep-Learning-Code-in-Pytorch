@@ -11,7 +11,7 @@ Part 1: Introduction to Generative Deep Learning
 - [x] Chapter 4: Generative Adversarial Networks
 
 Part 2: Teaching Machines to Paint, Write, Compose and Play
-- [ ] Chapter 5: Paint
+- [x] Chapter 5: Paint
 - [ ] Chapter 6: Write
 - [ ] Chapter 7: Compose
 - [ ] Chapter 8: Play
