@@ -2,6 +2,9 @@
 # from fastai https://github.com/fastai/fastai/blob/master/fastai/torch_core.py#L87
 import torch.nn as nn
 import functools
+import torch as t
+import torch.nn.functional as F
+from torchvision import transforms, models
 
 class PrePostInitMeta(type):
     "A metaclass that calls optional `__pre_init__` and `__post_init__` methods"
